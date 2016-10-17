@@ -127,14 +127,14 @@
 
   if [[ -f $1 ]]
   then
-   echo "Removing file"
-   rm $1
+    echo "Removing file"
+    rm $1
   elif [[ -d $1 ]]
   then
-   echo "Removing dir"
-   rm -r $1
+    echo "Removing dir"
+    rm -r $1
   else
-   echo "Can't remove $1"
+    echo "Can't remove $1"
   fi
 ```
 
@@ -145,7 +145,7 @@
 
   if [[ $# -ne 2 ]]
   then
-   echo "You should specifyexactly two arguments!"
+   echo "You should specify exactly two arguments!"
   else
    case $1 in
     1)
