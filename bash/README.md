@@ -362,3 +362,33 @@
 
   checkVendorRepo $@
 ```
+
+#### Полезные алиасы
+
+```bash
+  # User specific aliases and functions
+  # added by rybka
+  alias gst='git status'
+  alias gf='git fetch'
+  alias gm='git merge'
+  alias gd='git diff'
+  alias gb='git branch'
+  alias gbm='git branch --merged'
+  alias gcm='git commit -m'
+  alias gp='git push origin'
+  alias gbd='git branch -D'
+  alias gshorth='git log -p -2'
+  alias gch='git checkout'
+  alias adl='arm deploy less'
+  alias grntds='./grunt deploySync'
+  alias grntd='./grunt deploy'
+  alias ghide='git stash'
+  alias gshow='git stash pop'
+  alias gsl='git stash list'
+  alias myps='ps aux | grep rybka'
+  alias acm='arm chMigrations'
+  alias gmol='git merge origin/live'
+  alias gad='git add'
+  alias grm='git rm'
+  alias showaliases='cat $HOME/.bashrc | grep alias'
+```
