@@ -43,6 +43,7 @@ var BASE_PATH = "../assets/",
       }
     };
 
+// get themes list
 function getThemes(dir) {
   return fs.readdirSync(dir).filter(function (file) {
     return fs.statSync(path.join(dir, file)).isDirectory();
