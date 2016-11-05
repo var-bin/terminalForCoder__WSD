@@ -1,0 +1,27 @@
+.l-toolbar {
+  display: flex;
+  height: 60px;
+  background: var(--l-toolbar-bg);
+  color: var(--l-toolbar-color);
+
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    &_item {
+      margin: auto;
+      min-width: 100px;
+      max-width: 250px;
+      background: var(--l-toolbar_nav-list-bg);
+      padding: 5px;
+      border-radius: 5px;
+      border: 5px solid var(--l-toolbar_nav-list-border_color);
+      color: var(--l-toolbar_nav-list-color);
+      font-weight: 900;
+
+      &:hover {
+        --l-toolbar_nav-list-color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.l-profile {
+  width: 200px;
+  height: 200px;
+  background: var(--l-profile-bg);
+  color: var(--l-profile-color);
+}

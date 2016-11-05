@@ -1,0 +1,17 @@
+:root {
+  /* base */
+  --font-sans-serif: Arial, Helvetica, sans-serif;
+  --base-color: #000;
+
+  /* toolbar */
+  --l-toolbar-bg: #ff0;
+  --l-toolbar-color: #000;
+  --l-toolbar_nav-list-bg: #0f0;
+  --l-toolbar_nav-list-border_color: #4d4d4d;
+  --l-toolbar_nav-list-color: #d45;
+  --l-toolbar_nav-list-color-hover: #45d;
+
+  /* profile */
+  --l-profile-bg: #f00;
+  --l-profile-color: #369;
+}
