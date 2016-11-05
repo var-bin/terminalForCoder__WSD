@@ -43,49 +43,13 @@ var BASE_PATH = "../assets/",
       }
     };
 
-/*gulp.task("base-css-concat", function () {
-  return gulp.src(STYLES.base.path)
-  .pipe(concat(STYLES.base.concatFilename))
-  .pipe(postcss([autoprefixer, cssvariables({
-    preserve: true
-  }), nestRules, csso]))
-  .pipe(rename({
-    basename: STYLES.base.basename,
-    prefix: STYLES.base.prefix,
-    suffix: STYLES.base.suffix,
-    extname: STYLES.base.extname
-  }))
-  .pipe(gulp.dest(DIST_PATH))
-});
-
-gulp.task("minify-css", function () {
-  return gulp.src(STYLES.all.path)
-  .pipe(postcss([autoprefixer, inject({
-    cssFilePath: STYLES.base.path[0]
-  }), cssvariables({
-    preserve: true
-  }), removeRoot, nestRules, csso]))
-  .pipe(rename(function (file) {
-    var dirname = file.dirname,
-        filename = dirname;
-
-    file.dirname = "";
-    file.basename = STYLES.all.prefix + filename + STYLES.all.suffix;
-    file.extname = STYLES.all.extname;
-
-    return file;
-  }))
-  .pipe(gulp.dest(DIST_PATH));
-});
-
-gulp.task("default", ["base-css-concat", "minify-css"]);*/
-
 function getThemes(dir) {
   return fs.readdirSync(dir).filter(function (file) {
     return fs.statSync(path.join(dir, file)).isDirectory();
   });
 }
 
+// create styles-base.min.css for each theme
 gulp.task("base-css-concat", function() {
   var dirs = getThemes(BASE_PATH);
 
@@ -107,6 +71,7 @@ gulp.task("base-css-concat", function() {
   });
 });
 
+// work with other components for each theme
 gulp.task("minify-css", function () {
   var dirs = getThemes(BASE_PATH);
 
