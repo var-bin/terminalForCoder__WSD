@@ -16,7 +16,6 @@
     "gulp-csso": "~2.0.0",
     "gulp-rename": "~1.2.2",
     "postcss-css-variables": "~0.6.0",
-    "es6-promise": "~4.0.5",
     "postcss-csso": "~1.1.2",
     "postcss-inject": "~1.0.1",
     "postcss-remove-root": "0.0.2",
