@@ -211,97 +211,37 @@
   %path_to_directory% # имя папки куда сохранять файл с diff'ом
 ```
 
-#### “Убиваем” задачи пачками
-Пример:
-<a href="http://joxi.ru/Y82QW7jCWVzErd" target="_blank"><img src="http://dl2.joxi.net/drive/2016/10/15/0000/3530/11722/22/f9b1578d82.jpg"></a>
-
+#### Быстрый дифф + `Jira API`
 ```bash
   #!/bin/bash
-  # killd.sh
 
-  start=$1
-  end=$2
-
-  while [[ $start -le $end ]]
-  do
-    #echo $start
-    kill -9 $start
-    start=$((start + 1)) # !!!
-  done
-```
-
-#### Добавляем миграции пачками
-
-```bash
-  #!/bin/bash
-  # am.sh
-  # arm migration
-
-  scriptName=$0
-  count=$#
-
-  if [[ $count > 1 ]]
+  if [ -z "$1" ]
   then
-    echo "Name: $scriptName, count: $count"
-    for i in $@
-    do
-      arm migration $i
-    done
-    echo "migrations: ${@} have already added"
-  elif [[ $count == 1 ]]
-  then
-    arm migration $1
-    echo "migration: ${1} has already added"
-  else
-    echo "You need enter the migration name"
-    exit
+    echo "Please, specify an issue ID"
+    exit 1
   fi
-```
 
-> вместо arm migration добавить работу с файлами
+  issue_id="$1"
+  branch=$(git rev-parse --abbrev-ref HEAD)
 
-#### Запуск воркеров + интерэкшены
-> подумать...
+  # Get the first line of git remote output and cut a path to repository
+  repository=$(git remote -v | head -n1 | sed "s/^origin.*\/\(.*\)\.git\s(.*)/\1/")
 
-#### Чистим dist, build для конкретной темы
+  path_to_diff="$HOME/<path_to_diff_directory>$branch-$repository.diff"
 
-```bash
-  #!/bin/bash
-
-  # clearDist.sh - clear dist for current theme in spicy
-  # $1 - name of sandbox (path to phoenix)
-  # $2 - theme name. e.g. Cannot build real path <![CDATA[css:protected/assets/spicy/origin/pepper/blueberry/meetmesexy/_mobSite/dist/css resource:../../../../images/funnel-bg.jpg]]>
-  # you need enter origin/pepper/blueberry/meetmesexy/_mobSite/
-
-
-  clearDist() {
-    if [[ -z $1 && -z $2 ]]
-    then
-      echo "You need enter name of sandbox and theme"
-      exit 1
-    fi
-
-    sandbox=$1
-    theme=$2
-
-    # check if count of parameters < 2
-    # then $sandbox="p13"
-    # $theme=$1
-    if [[ $# < 2 ]]
-    then
-      sandbox="p13"
-      theme=$1
-    fi
-
-    path_to_spicy_dir="$HOME/htdocs/$sandbox/protected/assets/spicy"
-    path_to_dist="$path_to_spicy_dir/$theme"
-
-    find $path_to_dist -type d -name "dist" | xargs -l rm -rfv
-
-    echo "Dist of theme have already deleted: $path_to_dist"
+  diff_live () {
+    git diff "origin/live..master/$branch" > "$path_to_diff"
   }
 
-  clearDist $@
+  attach_diff () {
+    curl -D- -u "<ipa_username>":"<ipa_password>" -X POST -H "X-Atlassian-Token: no-check" -F "file=@$path_to_diff;type=text/x-diff" "https://jira.<project_name>.com/rest/api/2/issue/$issue_id/attachments"
+  }
+
+  diff_live && attach_diff
+
+  # Usage: cd <repo_name> && attach_diff <issue_id>
+  # <issue_id> should include your company prefix (ABC, XYZ, XX, etc.)
+  # At instance, "attach_diff XYZ-135" will try to attach diff to https://jira.<project_name>.com/browse/XYZ-135
 ```
 
 #### Up большого количества репозиториев
@@ -309,58 +249,49 @@
 ```bash
   #!/bin/bash
 
-  # checkVendorRepo.sh
+  # up_repo.sh - check repositories in core/vendor
   # find all directories that included .git
-  # If any repo hasn't switched on live branch
-  # than git checkout live && git branch && git pull
+  # If any repo hasn't switched on master branch
+  # than git checkout master && git branch && git pull
   # else git branch && git pull
-  # $1 = sandbox name
-
-  checkVendorRepo() {
-    sandbox="p13"
-    # if user set custom sandbox name
-    if [[ $# > 0 ]]
-    then
-      sandbox=$1
-    fi
-    # path to vendor repositories
-    path_to_vendor_repo="$HOME/htdocs/$sandbox/protected/vendor/phoenix/"
-    # save repositories to list
-    repo=`findRepo $path_to_vendor_repo`
-    # do check repositories stuff
-    checkBranch $repo
-  }
 
   # get list of repositories
   findRepo() {
+    path_to_vendor_repo="/d/var-bin/terminalForCoder__WSD/bash/core/vendors/"
     # find all git repositories in $path_to_vendor_repo
     # filter by /.git
-    find $1 -name .git | xargs | sed "s/\\/.git//g"
+    r=$(find $path_to_vendor_repo -name .git | xargs | sed "s/\\/.git//g")
+    # do check repositories stuff
+    checkBranch $r
   }
 
-  # do check repo stuff
+  # do check repositories stuff
   checkBranch() {
-    # live branch
-    LIVE="live"
-    # $i is item in $repo
+    BRANCH="master"
+
+    # $i is item in $r
     for i in $@
     do
       # get current branch name
       b=`cd $i && git branch | grep \*`
+      echo "repo: $i"
+      echo "current brunch: $b"
+
       # check branch
-      if [[ $b != "* live" ]]
+      if [[ $b != "* master" ]]
       then
-        echo "!Error! $i is not on live branch"
-        echo "Current branch is ${b}"
-        cd $i && git checkout $LIVE && git branch && git pull origin $LIVE
+        echo "!Error! $i is not on $BRANCH branch"
+        echo "Current branch is $b"
+        cd $i && git checkout $BRANCH && git branch && git pull origin $BRANCH
       else
-        cd $i && git branch && git pull origin $LIVE
+        echo "Do pull stuff"
+        cd $i && git branch && git pull origin $BRANCH
       fi
     done
     echo "Done. Congratulation, you win!"
   }
 
-  checkVendorRepo $@
+  findRepo $@
 ```
 
 #### Полезные алиасы
@@ -379,14 +310,12 @@
   alias gbd='git branch -D'
   alias gshorth='git log -p -2'
   alias gch='git checkout'
-  alias adl='arm deploy less'
   alias grntds='./grunt deploySync'
   alias grntd='./grunt deploy'
   alias ghide='git stash'
   alias gshow='git stash pop'
   alias gsl='git stash list'
   alias myps='ps aux | grep rybka'
-  alias acm='arm chMigrations'
   alias gmol='git merge origin/live'
   alias gad='git add'
   alias grm='git rm'
