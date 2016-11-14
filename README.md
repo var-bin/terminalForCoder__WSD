@@ -25,6 +25,7 @@ _repository for practice *nix terminal (Ubuntu prefer)_
         * `if`
         * `if/else`
         * `if/elif/else`
+        * `case/in/esac`
     3. Циклы
         * `for/in`
         * `while`
