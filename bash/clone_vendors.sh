@@ -16,14 +16,16 @@ cloneVendors() {
     vendor=$(echo ${repositories[$i]} | sed "s/https\:\/\/github\.com\/*//g" | sed "s/\/.*//g")
     vendor_repo_name=$(echo ${repositories[$i]} | sed "s/https\:\/\/github\.com\/.*\///g" | sed "s/\.git//g")
 
-    if [[ -d "$PATH_TO_CORE/$vendor/$vendor_repo_name" ]]
+    if [[ -d "$PATH_TO_CORE/$vendor" ]]
     then
       echo "Directory $PATH_TO_CORE/$vendor is exist"
+
+      cd "$PATH_TO_CORE/$vendor" && git clone ${repositories[$i]}
     else
-      echo "Create directory: $PATH_TO_CORE/$vendor/$vendor_repo_name"
+      echo "Create directory: $PATH_TO_CORE/$vendor"
       echo "Repository: ${repositories[$i]} is clonning"
 
-      mkdir "$PATH_TO_CORE/$vendor/$vendor_repo_name" && cd "$PATH_TO_CORE/$vendor/$vendor_repo_name" && git clone ${repositories[$i]} && cd -
+      mkdir "$PATH_TO_CORE/$vendor" && cd "$PATH_TO_CORE/$vendor" && git clone ${repositories[$i]}
     fi
     i=$((i + 1))
   done
