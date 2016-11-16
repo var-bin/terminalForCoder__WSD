@@ -7,7 +7,7 @@ clearDist() {
   theme=$1
   NAME="_dist"
 
-  path_to_assets="/d/var-bin/terminalForCoder__WSD/bash/core/assets"
+  path_to_assets="$HOME/terminalForCoder__WSD/bash/core/assets"
 
   # if $1 == "" clear all _dist in each theme
   if [[ -z $theme ]]
