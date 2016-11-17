@@ -29,7 +29,7 @@
 
 **Передача аргументов скрипту:**
 ```bash
-  ./script.sh arg1, arg2, arg3, …, argN
+  ./script.sh arg1 arg2 arg3 … argN
 ```
 
 **Обработка внутри скрипта:**
@@ -246,6 +246,8 @@
 
 #### Up большого количества репозиториев
 
+:bangbang: Before start working with `./scripting/up_repo.sh` run `./clone_vendors.sh` :bangbang:
+
 ```bash
   #!/bin/bash
 
@@ -257,7 +259,7 @@
 
   # get list of repositories
   findRepo() {
-    path_to_vendor_repo="/d/var-bin/terminalForCoder__WSD/bash/core/vendors/"
+    path_to_vendor_repo="$HOME/terminalForCoder__WSD/bash/core/vendors/"
     # find all git repositories in $path_to_vendor_repo
     # filter by /.git
     r=$(find $path_to_vendor_repo -name .git | xargs | sed "s/\\/.git//g")
@@ -316,7 +318,7 @@
   alias gshow='git stash pop'
   alias gsl='git stash list'
   alias myps='ps aux | grep rybka'
-  alias gmol='git merge origin/live'
+  alias gmom='git merge origin/master'
   alias gad='git add'
   alias grm='git rm'
   alias showaliases='cat $HOME/.bashrc | grep alias'
