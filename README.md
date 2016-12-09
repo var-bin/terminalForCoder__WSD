@@ -2,11 +2,14 @@
 _repository for practice *nix terminal (Ubuntu prefer)_
 
 ## How it use
-1
+
+* Do `git clone` stuff
+
 ```bash
 $ git clone https://github.com/var-bin/terminalForCoder__WSD.git
 ```
-2. Enjoy :simple_smile:
+
+* Enjoy :simple_smile:
 
 ## Список тем, которые будут рассмотрены
 
