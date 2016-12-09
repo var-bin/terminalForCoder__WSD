@@ -9,7 +9,7 @@ _repository for practice *nix terminal (Ubuntu prefer)_
 $ git clone https://github.com/var-bin/terminalForCoder__WSD.git
 ```
 
-* Enjoy :+1:
+* Enjoy :computer:
 
 ## Список тем, которые будут рассмотрены
 
