@@ -35,3 +35,6 @@ _repository for practice *nix terminal (Ubuntu prefer)_
         * Чистим _dist
         * Up большого числа репозиториев
         * Полезные алиасы
+
+## Contributing
+Want to contribute? [Follow these recommendations].
