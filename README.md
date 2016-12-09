@@ -37,4 +37,4 @@ _repository for practice *nix terminal (Ubuntu prefer)_
         * Полезные алиасы
 
 ## Contributing
-Want to contribute? [Follow these recommendations].
+Want to contribute? [Follow these recommendations](https://github.com/var-bin/terminalForCoder__WSD/blob/master/contributing.md).
