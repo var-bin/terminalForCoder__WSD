@@ -11,40 +11,39 @@ $ git clone https://github.com/var-bin/terminalForCoder__WSD.git
 
 * Enjoy :computer:
 
-## Список тем, которые будут рассмотрены
+## The list of topics
 
-1. Менеджеры терминалов
+1. Terminal managers
     1. `screen`
-        * установка
-        * файл с настройками для `screen`
-        * базовые сочетания клавиш
-        * пример работы
+        * Install
+        * Configure file for `screen`
+        * Basic key combinations
+        * How it works
     2. `tmux`
-        * установка
-        * файл с настройками для `tmux`
-        * базовые сочетания клавиш
-        * пример работы
-    3. `screen` vs `tmux` (за и против)
-        * сравнительная таблица или текст
+        * Install
+        * Configure file for `tmux`
+        * Basic key combinations
+        * How it works
+    3. `screen` vs `tmux`
 2. `bash`
-    1. Основы
-        * Переменные
-        * Передача аргументов скрипту
-        * Обработка внутри скрипта
-    2. Ветвление
+    1. Basic
+        * Variables
+        * Passing arguments to the script
+        * Processing within the script
+    2. Conditions to execute different branches of code
         * `if`
         * `if/else`
         * `if/elif/else`
         * `case/in/esac`
-    3. Циклы
+    3. Loops for repeated code
         * `for/in`
         * `while`
-    4. Автоматизация рутинных задач
-        * Быстрый `diff`
-        * Быстрый `diff` + `Jira API`
-        * Чистим _dist
-        * Up большого числа репозиториев
-        * Полезные алиасы
+    4. Routine tasks automation
+        * Fast `diff`
+        * Fast `diff` + `Jira API`
+        * Clean _dist
+        * Up a large number of repositories
+        * Useful aliases
 
 ## Contributing
 Want to contribute? [Follow these recommendations](https://github.com/var-bin/terminalForCoder__WSD/blob/master/contributing.md).
