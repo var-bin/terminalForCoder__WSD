@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# clear_dist.sh - clear dist for current theme
+# clean_dist.sh - clean dist for current theme
 
 
-clearDist() {
+cleanDist() {
   theme=$1
   NAME="_dist"
 
   path_to_assets="$HOME/terminalForCoder__WSD/bash/core/assets"
 
-  # if $1 == "" clear all _dist in each theme
+  # if $1 == "" clean all _dist in each theme
   if [[ -z $theme ]]
   then
     theme="assets"
@@ -28,4 +28,4 @@ clearDist() {
   fi
 }
 
-clearDist $@
+cleanDist $@
