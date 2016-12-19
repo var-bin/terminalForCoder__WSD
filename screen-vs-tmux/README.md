@@ -8,11 +8,11 @@
   <tbody>
     <tr>
       <td valign="top">
-        <code>-</code> Не умеет создавать layout для каждой вкладки<br/>
-        <code>-</code> Не умеет сохранять layout, если оборвалась связь или еще что-то там<br/>
-        <code>-</code> До версии 4.1 не умел делать разбивку по вертикали<br/>
-        <code>-</code> Когда вы создаете новый регион, то в нем отдельно нужно создавать новое окно <code>(Ctrl+a c)</code>, выполнить переход в нужную директорию и т.д.<br/>
-        <code>-</code> Чтобы удалить регион тоже нужно помучатся <code>Ctrl+a :remove</code>
+        <code>-</code> Cannot create independent layouts for each tab<br/>
+        <code>-</code> Cannot save layouts in case of a connection’s drop<br/>
+        <code>-</code> Before 4.1 version couldn’t support vertical separation<br/>
+        <code>-</code> Whenever you create a new region, you also need to create a new window <code>(Ctrl+a c)</code>, then shift to the needed directory, etc<br/>
+        <code>-</code> To delete a region, you’d need to press one more key combination <code>Ctrl+a :remove</code>
       </td>
       <td>
         <code>+</code> Что называется “с коробки” настроен довольно качественно<br/>
