@@ -1,43 +1,43 @@
 # bash
 
 ### Preface
-Когда вы запускаете терминал, внутри него работает специальная программа- оболочка - `shell` (англ) - интерпретатор команд. Shell понимает все команды которые вы вводите с клавиатуры и обрабатывает их. Также выводит сообщения об ошибках, следит за корректностью команд и их синтаксисом. Примером таких команд могут быть: переход в папку, создать новую директорию, добавить текстовый файл, отредактировать его, сохранить изменения. Программ-оболочек довольно много. Одна их первых удачных реализаций называется sh - ее разработал Стивен Борн в 1977 году ([wiki](https://ru.wikipedia.org/wiki/Bourne_shell)). Эта оболочка шла в составе 7го издания `ОС Unix`. Данная оболочка является де-факто стандартом и доступна почти в любом дистрибутиве `*nix`. В 1989 году появилась усовершенствованная и модернизированная версия `sh - bash (Bourne again shell)`. Почему `bash` спросите вы. И такой вопрос будет уместен. Все просто - в 99% случаев когда вы садитесь за компьютер, который работает на `OS Unix`, оболочка по умолчанию, которая обрабатывает команды пользователя будет `bash`. Конечно, есть еще такая оболочка как `zsh`, но это уже совсем другая история.
+Every time you launch a terminal, it starts to run the shell - a special program that interprets and processes command-lines taken from your keyboard. The shell also detects errors and monitors compliance of the commands and with their syntax. Some of the examples of these commands include opening a folder, creating a directory, adding, editing and saving text files. Actually, there are many other command-line interpreters out there. Developed by Stephen Bourne in 1977 ([`sh`](https://en.wikipedia.org/wiki/Bourne_shell)) is known to be one of the first and successful release of the shell. It was a part of Version 7 OS Unix and is commonly considered a de facto standard for any `*nix` distributive. In 1989 the world witnessed its upgraded version under a new name - `sh - bash (Bourne again shell)`. You're likely to ask why bash and the question would be quite to the point, although here's all pretty simple. In 99% `OS Unix` driven computers use bash as the default shell. You can also find the `zsh`, but that’s a completely different story.
 
 ```bash
-  which bash # где находится bash
+  which bash # where is placed bash
 ```
 
-### Основы
+### Basics
 ```bash
-  #!/bin/bash # начало любого скрипта на bash
+  #!/bin/bash # the beginning of any script on bash
 ```
 
-#### Перменные
-  - **имя** = буквы, цифры, _ (нижнее подчеркивание).
-  - **имя** не может начинаться с цифры.
-  - **значение:** числа, строки (если есть пробелы, то в кавычках), отдельные символы.
+#### Variables
+  - **name**: letters, digits, _ (underscore).
+  - **name** - it cannot start with a digit.
+  - **value**: digits, strings (if there is any whitespace - wrap into double quotes), symbols.
 
-**Создание (перезапись) переменной:**
+**Create (rewrite) variable:**
 ```bash
   path=~/Docs
 ```
 
-**Чтение переменной:**
+**Read variable:**
 ```bash
   $path или ${path}
 ```
 
-**Передача аргументов скрипту:**
+**Pass arguments to a script:**
 ```bash
   ./script.sh arg1 arg2 arg3 … argN
 ```
 
-**Обработка внутри скрипта:**
+**Processing within the script:**
 ```bash
-  $1 # первый аргумент
-  $2 # второй аргумент
-  $0 # имя скрипта
-  $# # количество аргументов
+  $1 # first argument
+  $2 # second argument
+  $0 # name of script
+  $# # count of arguments
 ```
 
 **Hello, world!** `*`
@@ -45,10 +45,10 @@
   #!/bin/bash
   echo "Hello, world!"
 
-  ./hw.sh # вызов
+  ./hw.sh # how it calls
 ```
 
-**Еще один пример, поработаем с переменными:**
+**Another one example, working with variables:**
 ```bash
   #!/bin/bash
 
@@ -57,25 +57,25 @@
 
   echo "Arguments are \$1=$var1 \$2=$var2"
 
-  ./variables.sh var1 var2 # вызов
+  ./variables.sh var1 var2 # how it calls
 ```
-> `*` Чтобы выполнить файл ему нужно дать на это разрешение:
+> `*` Edit a permit of a file:
 ```bas
   chmod +x filename.sh
 ```
 
-#### Ветвления
+#### Conditions to execute different branches of code
 
 **if**
 ```bash
   if [[ condition ]]
   then
-    # action, if condition is true
+    # an action, if condition is true
   fi
 ```
 
 * * *
-**Условия (строки):**
+**Conditions (strings):**
 ```bash
   -z <string> # string is empty
   -n <string> # string is not empty
@@ -83,9 +83,9 @@
   <str1> != <str2> # strings are not equal
 ```
 
-**Условия (числа/строки):**
+**Conditions (digits/strings):**
 ```bash
-  <число/строка> операция <число/строка>
+  <digits/strings> operation <digits/strings>
   -eq, (==) # equal
   -ne, (!=) # not equal
   -lt, (<) # less than
@@ -94,7 +94,7 @@
   -ge # more than or equal
 ```
 
-**Условия (файлы):**
+**Conditions (files):**
 ```bash
   -e <path> # path is exist
   -f <path> # is file
@@ -103,7 +103,7 @@
   -x <path> # file is executable
 ```
 
-**Условия (логические):**
+**Conditions (boolean):**
 ```bash
   ! # denial of boolean expression
   && # boolean “and”
@@ -162,29 +162,29 @@
   fi
 ```
 
-#### Циклы
+#### Loops for repeated code
 
 **for/in**
 ```bash
   for i in array
   do
-    # дейтсвие, переменная i каждый раз принимает
-    # следующее значение из array
+    # an action, i on every iteration is getting
+    # the next value from array
   done
 
-  break # прервать выполнение цикла
-  continue # перейти на следующее значени переменной i
+  break # break loop
+  continue # go to the next value of i
 ```
 
 **while**
 ```bash
   while [[ condition ]]
   do
-    # action, while condition is true
+    # an action, while condition is true
   done
 ```
 
-**while пример:**
+**while example:**
 ```bash
   # while.sh
   #!/bin/bash
@@ -201,17 +201,17 @@
   done
 ```
 
-### Автоматизация рутинных задач
+### Routine tasks automation
 
-#### Быстрый дифф
+#### Fast diff
 ```bash
   git diff origin/master origin/%branch-name% > ~/%path_to_directory%/diff/diff-%branch-name%.diff
 
-  %branch-name% # имя ветки для которой нужно создать diff
-  %path_to_directory% # имя папки куда сохранять файл с diff'ом
+  %branch-name% # name of the branch to which you want to create a diff
+  %path_to_directory% # the name of the folder where to save the file with diff
 ```
 
-#### Быстрый дифф + `Jira API`
+#### Fast diff + `Jira API`
 ```bash
   #!/bin/bash
 
@@ -244,7 +244,7 @@
   # At instance, "attach_diff XYZ-135" will try to attach diff to https://jira.<project_name>.com/browse/XYZ-135
 ```
 
-#### Up большого количества репозиториев
+#### Up a large number of repositories
 
 :bangbang: Before start working with `./scripting/up_repo.sh` run `./clone_vendors.sh` :bangbang:
 
@@ -296,7 +296,7 @@
   findRepo $@
 ```
 
-#### Полезные алиасы
+#### Helpful aliases
 
 ```bash
   # User specific aliases and functions
