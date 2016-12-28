@@ -15,13 +15,13 @@
         <code>-</code> To delete a region, you’d need to press one more key combination <code>Ctrl+a :remove</code>
       </td>
       <td>
-        <code>+</code> Что называется “с коробки” настроен довольно качественно<br/>
-        <code>+</code> Не нужно настраивать положение панели с вкладками и как их подсвечивать, как это было с <code>screen</code><br/>
-        <code>+</code> Умеет делить экран на так называемые регионы, как по вертикали, так и по горизонтали<br/>
-        <code>+</code> Чтобы закрыть регион, достаточно написать <code>exit</code><br/>
-        <code>+</code> Умеет держать удаленное соединение <code>*</code><br/><br/>
+        <code>+</code> Boasts quality default settings out-of-the-box<br/>
+        <code>+</code> No need to customize the arrangement and backlight of the control pane<br/>
+        <code>+</code> Supports both vertical and horizontal splits<br/>
+        <code>+</code> In order to close the pane, you only need to enter <code>exit</code><br/>
+        <code>+</code> Can hold a remote connection by ssh <code>*</code><br/><br/>
         <blockquote>
-          * нужна дополнительная магия
+          * requires some additional magic
         </blockquote>
       </td>
     </tr>
