@@ -38,12 +38,12 @@ $ git clone https://github.com/var-bin/terminalForCoder__WSD.git
     3. Loops for repeated code
         * `for/in`
         * `while`
-    4. Routine tasks automation
-        * Fast `diff`
-        * Fast `diff` + `Jira API`
-        * Clean _dist
-        * Up a large number of repositories
-        * Useful aliases
+3. Routine tasks automation
+    * Fast `diff`
+    * Fast `diff` + `Jira API`
+    * Clean _dist
+    * Up a large number of repositories
+    * Useful aliases
 
 ## Contributing
 Want to contribute? [Follow these recommendations](https://github.com/var-bin/terminalForCoder__WSD/blob/master/contributing.md).
