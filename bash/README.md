@@ -13,9 +13,9 @@ Every time you launch a terminal, it starts to run the shell - a special program
 ```
 
 #### Variables
-  - **name**: letters, digits, _ (underscore).
-  - **name** - it cannot start with a digit.
-  - **value**: digits, strings (if there is any whitespace - wrap into double quotes), symbols.
+  - **name**: letters, numbers, _ (underscore).
+  - **name** - it cannot start with a number.
+  - **value**: numbers, strings (if there is any whitespace - wrap it into double quotes), characters.
 
 **Create (rewrite) variable:**
 ```bash
@@ -32,7 +32,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
   ./script.sh arg1 arg2 arg3 … argN
 ```
 
-**Processing within the script:**
+**Processing arguments within the script:**
 ```bash
   $1 # first argument
   $2 # second argument
@@ -59,8 +59,8 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
   ./variables.sh var1 var2 # how it calls
 ```
-> `*` Edit a permit of a file:
-```bas
+> `*` Edit a permit for a file:
+```bash
   chmod +x filename.sh
 ```
 
@@ -83,9 +83,9 @@ Every time you launch a terminal, it starts to run the shell - a special program
   <str1> != <str2> # strings are not equal
 ```
 
-**Conditions (digits/strings):**
+**Conditions (numbers/strings):**
 ```bash
-  <digits/strings> operation <digits/strings>
+  <numbers/strings> operation <numbers/strings>
   -eq, (==) # equal
   -ne, (!=) # not equal
   -lt, (<) # less than
@@ -106,8 +106,8 @@ Every time you launch a terminal, it starts to run the shell - a special program
 **Conditions (boolean):**
 ```bash
   ! # denial of boolean expression
-  && # boolean “and”
-  || # boolean “or”
+  && # boolean "and"
+  || # boolean "or"
 ```
 * * *
 
@@ -259,7 +259,8 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
   # get list of repositories
   findRepo() {
-    path_to_vendor_repo="$HOME/terminalForCoder__WSD/bash/core/vendors/"
+    REPO_NAME="terminalForCoder__WSD"
+    path_to_vendor_repo="$HOME/$REPO_NAME/bash/core/vendors/"
     # find all git repositories in $path_to_vendor_repo
     # filter by /.git
     r=$(find $path_to_vendor_repo -name .git | xargs | sed "s/\\/.git//g")
