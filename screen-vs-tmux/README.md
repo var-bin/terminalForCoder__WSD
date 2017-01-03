@@ -19,7 +19,7 @@
         <code>+</code> No need to customize the arrangement and backlight of the control pane<br/>
         <code>+</code> Supports both vertical and horizontal splits<br/>
         <code>+</code> In order to close the pane, you only need to enter <code>exit</code><br/>
-        <code>+</code> Can hold a remote connection by SSH <code>*</code><br/><br/>
+        <code>+</code> Can hold a remote connection by SSH<code>*</code><br/><br/>
         <blockquote>
           * requires some additional magic
         </blockquote>
