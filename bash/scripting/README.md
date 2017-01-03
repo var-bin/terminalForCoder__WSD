@@ -1,4 +1,4 @@
-# scripting
+# Scripting
 
 ## First step
 
