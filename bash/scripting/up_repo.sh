@@ -8,7 +8,8 @@
 
 # get list of repositories
 findRepo() {
-  path_to_vendor_repo="$HOME/terminalForCoder__WSD/bash/core/vendors/"
+  REPO_NAME="terminalForCoder__WSD"
+  path_to_vendor_repo="$HOME/$REPO_NAME/bash/core/vendors/"
   # find all git repositories in $path_to_vendor_repo
   # filter by /.git
   r=$(find $path_to_vendor_repo -name .git | xargs | sed "s/\\/.git//g")
