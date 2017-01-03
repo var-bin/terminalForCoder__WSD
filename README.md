@@ -1,7 +1,7 @@
 # terminalForCoder__WSD
 _repository for practice *nix terminal (Ubuntu prefer)_
 
-## How it use
+## How to use it
 
 * Do `git clone` stuff
 
@@ -16,7 +16,7 @@ $ git clone https://github.com/var-bin/terminalForCoder__WSD.git
 1. Terminal managers
     1. `screen`
         * Installation
-        * Configure file for `screen`
+        * Configuration file for `screen`
         * Basic key combinations
         * How it works
     2. `tmux`
