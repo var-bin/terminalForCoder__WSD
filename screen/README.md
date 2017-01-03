@@ -1,10 +1,10 @@
-# screen - how to
+# screen - how to use it
 
 ### Installation
 Open your favourite terminal and type `sudo apt-get install screen`
 
 ### Run
-In your favourite terminal type `screen`
+Type `screen` in your favourite terminal
 
 ### Hot keys
 [follow this link](./hotkey.md)
@@ -13,6 +13,6 @@ In your favourite terminal type `screen`
 * Download [this file](./.screenrc)
 * Rename file `screenrc` -> `.screenrc`
 * Put it in your home directory (`~`)
-* Restart screen
+* Restart screen and terminal
 
 ### Enjoy it =)
