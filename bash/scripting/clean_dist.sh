@@ -6,8 +6,9 @@
 cleanDist() {
   theme=$1
   NAME="_dist"
+  REPO_NAME="terminalForCoder__WSD"
 
-  path_to_assets="$HOME/terminalForCoder__WSD/bash/core/assets"
+  path_to_assets="$HOME/$REPO_NAME/bash/core/assets"
 
   # if $1 == "" clean all _dist in each theme
   if [[ -z $theme ]]
