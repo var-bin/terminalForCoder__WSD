@@ -14,7 +14,7 @@ Type `man tmux`
 
 ### Settings
 * Add this code to `.bashrc`:
-<script src="https://gist.github.com/var-bin/a1b7b506572084e9b98e549745683fb5.js"></script>
+https://gist.github.com/var-bin/a1b7b506572084e9b98e549745683fb5
 * Restart tmux and terminal
 
 ### Enjoy it =)
