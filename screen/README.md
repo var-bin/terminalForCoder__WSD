@@ -7,7 +7,7 @@ Open your favourite terminal and type `sudo apt-get install screen`
 Type `screen` in your favourite terminal
 
 ### Hot keys
-[follow this link](./hotkey.md)
+[Follow this link](./hotkey.md)
 
 ### Settings
 * Download [this file](./.screenrc)
