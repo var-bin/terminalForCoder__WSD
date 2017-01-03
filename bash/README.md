@@ -48,7 +48,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
   ./hw.sh # how it calls
 ```
 
-**Another one example, working with variables:**
+**Another one example of working with variables:**
 ```bash
   #!/bin/bash
 
@@ -301,7 +301,6 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
 ```bash
   # User specific aliases and functions
-  # added by rybka
   alias gst='git status'
   alias gf='git fetch'
   alias gm='git merge'
