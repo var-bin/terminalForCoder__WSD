@@ -1,6 +1,6 @@
-// gulpfile.js
-
 "use strict";
+
+// gulpfile.js
 
 var gulp = require("gulp"),
     postcss = require("gulp-postcss"),
