@@ -1,6 +1,6 @@
 # screen - how to
 
-### Install
+### Installation
 Open your favourite terminal and type `sudo apt-get install screen`
 
 ### Run
