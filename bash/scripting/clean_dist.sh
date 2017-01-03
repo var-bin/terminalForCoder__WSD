@@ -5,7 +5,7 @@
 
 cleanDist() {
   theme=$1
-  NAME="_dist"
+  DIST_NAME="_dist"
   REPO_NAME="terminalForCoder__WSD"
 
   path_to_assets="$HOME/$REPO_NAME/bash/core/assets"
@@ -19,13 +19,13 @@ cleanDist() {
     path_to_dist="$path_to_assets/$theme"
   fi
 
-  if [[ -n $(find $path_to_dist -type d -name $NAME) ]]
+  if [[ -n $(find $path_to_dist -type d -name $DIST_NAME) ]]
   then
     # do clear stuff
-    find $path_to_dist -type d -name $NAME | xargs -l rm -rfv
+    find $path_to_dist -type d -name $DIST_NAME | xargs -l rm -rfv
     echo "Dist of $theme have already deleted: $path_to_dist"
   else
-    echo "Can not find $NAME in $theme"
+    echo "Can not find $DIST_NAME in $theme"
   fi
 }
 
