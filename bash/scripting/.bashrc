@@ -5,7 +5,7 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-source ~/htdocs/git-completion.bash
+source ~/git-completion.bash
 
 # Making SSH_AUTH_SOCK work between detaches in tmux/screen
 # Making SSH_AUTH_SOCK work between detaches in tmux/screen
