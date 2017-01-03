@@ -8,7 +8,6 @@ fi
 source ~/git-completion.bash
 
 # Making SSH_AUTH_SOCK work between detaches in tmux/screen
-# Making SSH_AUTH_SOCK work between detaches in tmux/screen
 if [[ ! -z "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/agent_sock" ]]
 then
    unlink "$HOME/agent_sock" 2>/dev/null
