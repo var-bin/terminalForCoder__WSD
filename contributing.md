@@ -6,7 +6,7 @@
 
 *3 - Create your feature branch:*
 ```bash
-$ git checkout -b my-new-feature
+$ git checkout -b my-new-feature origin/master
 ```
 *4 - Commit your changes:*
 ```bash
