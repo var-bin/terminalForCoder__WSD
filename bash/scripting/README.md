@@ -1,9 +1,8 @@
 # scripting
 
 ## First step
-`$HOME/terminalForCoder__WSD/bash/core/assets`
 
-`terminalForCoder__WSD` - this is the directory’s name where the repository’s been cloned to. Change it if you need.
+`REPO_NAME="terminalForCoder__WSD"` - this is the directory’s name where the repository’s been cloned to. Change it if you need.
 
 ### List of files:
 
