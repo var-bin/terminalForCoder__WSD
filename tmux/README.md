@@ -7,7 +7,7 @@ Open your favourite terminal and type `sudo apt-get install tmux`
 Type `tmux` in your favourite terminal
 
 ### Hot keys
-[follow this link](./hotkey.md)
+[Follow this link](./hotkey.md)
 
 ### Manual
 Type `man tmux`
