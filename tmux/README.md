@@ -1,10 +1,10 @@
-# tmux - how to
+# tmux - how to use it
 
 ### Installation
 Open your favourite terminal and type `sudo apt-get install tmux`
 
 ### Run
-In your favourite terminal type `tmux`
+Type `tmux` in your favourite terminal
 
 ### Hot keys
 [follow this link](./hotkey.md)
