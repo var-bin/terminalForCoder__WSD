@@ -14,7 +14,15 @@ Type `man tmux`
 
 ### Settings
 * Add this code to `.bashrc`:
-https://gist.github.com/var-bin/a1b7b506572084e9b98e549745683fb5
+```bash
+# Making SSH_AUTH_SOCK work between detaches in tmux/screen
+if [[ ! -z "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/agent_sock" ]]
+then
+   unlink "$HOME/agent_sock" 2>/dev/null
+   ln -s "$SSH_AUTH_SOCK" "$HOME/agent_sock"
+   export SSH_AUTH_SOCK="$HOME/agent_sock"
+fi
+```
 * Restart tmux and terminal
 
 ### Enjoy it =)
