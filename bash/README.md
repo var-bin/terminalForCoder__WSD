@@ -13,7 +13,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 ```
 
 #### Variables
-  - **name**: letters, numbers, _ (underscore).
+  - **name**: letters, numbers, `_` (underscore).
   - **name** - it cannot start with a number.
   - **value**: numbers, strings (if there is any whitespace - wrap it into double quotes), characters.
 
@@ -24,7 +24,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
 **Read variable:**
 ```bash
-  $path или ${path}
+  "$path" или "${path}"
 ```
 
 **Pass arguments to a script:**
@@ -34,10 +34,12 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
 **Processing arguments within the script:**
 ```bash
-  $1 # first argument
-  $2 # second argument
-  $0 # name of script
-  $# # count of arguments
+  "$1" # first argument
+  "$2" # second argument
+  "$0" # name of script
+  "$#" # count of arguments
+  "$@" # all arguments is concatenated in one string
+    # Each argument is represented as one word
 ```
 
 **Hello, world!** `*`
