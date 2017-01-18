@@ -9,11 +9,11 @@ fi
 source ~/git-completion.bash
 
 # Making SSH_AUTH_SOCK work between detaches in tmux/screen
-if [[ ! -z "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/agent_sock" ]]
+if [[ ! -z "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "${HOME}/agent_sock" ]]
 then
-   unlink "$HOME/agent_sock" 2>/dev/null
-   ln -s "$SSH_AUTH_SOCK" "$HOME/agent_sock"
-   export SSH_AUTH_SOCK="$HOME/agent_sock"
+   unlink "${HOME}/agent_sock" 2>/dev/null
+   ln -s "$SSH_AUTH_SOCK" "${HOME}/agent_sock"
+   export SSH_AUTH_SOCK="${HOME}/agent_sock"
 fi
 
 # User specific aliases and functions
