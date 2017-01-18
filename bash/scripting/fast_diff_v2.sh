@@ -3,7 +3,7 @@
 if [ -z "$1" ]
 then
   echo "Please, specify an issue ID"
-  exit 1
+  exit 0
 fi
 
 issue_id="$1"
