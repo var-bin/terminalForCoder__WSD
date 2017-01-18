@@ -8,8 +8,10 @@ Every time you launch a terminal, it starts to run the shell - a special program
 ```
 
 ### Basics
+The beginning of any script in bash
+
 ```bash
-  #!/bin/bash # the beginning of any script on bash
+  #!/bin/bash
 ```
 
 #### Variables
@@ -18,11 +20,13 @@ Every time you launch a terminal, it starts to run the shell - a special program
   - **value**: numbers, strings (if there is any whitespace - wrap it into double quotes), characters.
 
 **Create (rewrite) variable:**
+
 ```bash
   path=~/Docs
 ```
 
 **Read variable:**
+
 ```bash
   "$path" или "${path}"
 ```
@@ -33,42 +37,46 @@ Every time you launch a terminal, it starts to run the shell - a special program
 ```
 
 **Processing arguments within the script:**
+
 ```bash
   "$1" # first argument
   "$2" # second argument
   "$0" # name of script
   "$#" # count of arguments
-  "$@" # all arguments is concatenated in one string
-    # Each argument is represented as one word
+  "$@" # all arguments is concatenated in one string,
+       # each argument is represented as one word
 ```
 
 **Hello, world!** `*`
+
 ```bash
   #!/bin/bash
   echo "Hello, world!"
 
-  ./hw.sh # how it calls
+  # ./hw.sh - how this script should be called
 ```
 
 **Another one example of working with variables:**
+
 ```bash
   #!/bin/bash
 
-  var1=$1
-  var2=$2
+  var1="$1"
+  var2="$2"
 
-  echo "Arguments are \$1=$var1 \$2=$var2"
+  echo "Arguments are \$1=${var1} \$2=${var2}"
 
-  ./variables.sh var1 var2 # how it calls
+  # ./variables.sh Hello world - how this script should be called
 ```
 > `*` Edit a permit for a file:
 ```bash
-  chmod +x filename.sh
+  chmod +x <filename>
 ```
 
 #### Conditions to execute different branches of code
 
 **if**
+
 ```bash
   if [[ condition ]]
   then
@@ -78,6 +86,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
 * * *
 **Conditions (strings):**
+
 ```bash
   -z <string> # string is empty
   -n <string> # string is not empty
@@ -86,6 +95,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 ```
 
 **Conditions (numbers/strings):**
+
 ```bash
   <numbers/strings> operation <numbers/strings>
   -eq, (==) # equal
@@ -97,6 +107,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 ```
 
 **Conditions (files):**
+
 ```bash
   -e <path> # path is exist
   -f <path> # is file
@@ -106,6 +117,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 ```
 
 **Conditions (boolean):**
+
 ```bash
   ! # denial of boolean expression
   && # boolean "and"
@@ -114,6 +126,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 * * *
 
 **if/else:**
+
 ```bash
   if [[ condition ]]
   then
@@ -121,85 +134,97 @@ Every time you launch a terminal, it starts to run the shell - a special program
   else
     # action, if condition is false
   fi
+
+  break # break loop
+  continue # go to the next value of i
 ```
 
 **if/elif/else**
+
 ```bash
   #!/bin/bash
 
-  if [[ -f $1 ]]
+  if [[ -f "$1" ]]
   then
     echo "Removing file"
-    rm $1
-  elif [[ -d $1 ]]
+    rm "$1"
+  elif [[ -d "$1" ]]
   then
     echo "Removing dir"
-    rm -r $1
+    rm -r "$1"
   else
-    echo "Can't remove $1"
+    echo "Can't remove ${1}"
   fi
 ```
 
 
 **case/in/esac**
+
 ```bash
   #!/bin/bash
 
-  if [[ $# -ne 2 ]]
+  # ./case_in_esac.sh 2 1
+  # Creating dir 1
+  # ./case_in_esac.sh 1 2
+  # Creating file 2
+
+  if [[ "$#" -ne 2 ]]
   then
-   echo "You should specify exactly two arguments!"
+    echo "You should specify exactly two arguments!"
   else
-   case $1 in
-    1)
-     echo "Creating file $2"
-     touch $2
-    ;;
-    2)
-     echo "Creating dir $2"
-     mkdir $2
-    ;;
-    *)
-     echo "Wrong value"
-   esac
+    case "$1" in
+      1)
+        echo "Creating file ${2}"
+        touch "$2"
+      ;;
+      2)
+        echo "Creating dir ${2}"
+        mkdir "$2"
+      ;;
+      *)
+        echo "Wrong value"
+      ;;
+  esac
   fi
 ```
 
 #### Loops for repeated code
 
 **for/in**
+
 ```bash
   for i in array
   do
     # an action, i on every iteration is getting
     # the next value from array
   done
-
-  break # break loop
-  continue # go to the next value of i
 ```
 
 **while**
+
 ```bash
-  while [[ condition ]]
+  while [ condition ]
   do
     # an action, while condition is true
   done
 ```
 
 **while example:**
+
 ```bash
-  # while.sh
   #!/bin/bash
+  # while.sh
 
   again="yes"
+
   while [ "$again" = "yes" ]
   do
-   echo "Please enter a name:"
- >  read name
-   echo "The name you entered is $name"
+    echo "Please enter a name:"
+    read name # !!!
+    echo "The name you entered is ${name}"
 
-   echo "Do you wish to continue? (yes/no)"
-   read again
+    echo "Do you wish to continue? (yes/no)"
+    read again # !!!
   done
 ```
 
@@ -207,10 +232,10 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
 #### Fast diff
 ```bash
-  git diff origin/master origin/%branch-name% > ~/%path_to_directory%/diff/diff-%branch-name%.diff
+  git diff origin/master origin/<branch-name> > ~/<path_to_directory>/diff/diff-<branch-name>.diff
 
-  %branch-name% # name of the branch to which you want to create a diff
-  %path_to_directory% # the name of the folder where to save the file with diff
+  <branch-name> # a name of the branch to which you want to create a diff
+  <path_to_directory> # a name of the folder where to save the file with diff
 ```
 
 #### Fast diff + `Jira API`
@@ -229,14 +254,14 @@ Every time you launch a terminal, it starts to run the shell - a special program
   # Get the first line of git remote output and cut a path to repository
   repository=$(git remote -v | head -n1 | sed "s/^origin.*\/\(.*\)\.git\s(.*)/\1/")
 
-  path_to_diff="$HOME/<path_to_diff_directory>$branch-$repository.diff"
+  path_to_diff="${HOME}/<path_to_diff_directory>${branch}-${repository}.diff"
 
   diff_live () {
-    git diff "origin/live..master/$branch" > "$path_to_diff"
+    git diff "origin/live..master/${branch}" > "$path_to_diff"
   }
 
   attach_diff () {
-    curl -D- -u "<ipa_username>":"<ipa_password>" -X POST -H "X-Atlassian-Token: no-check" -F "file=@$path_to_diff;type=text/x-diff" "https://jira.<project_name>.com/rest/api/2/issue/$issue_id/attachments"
+    curl -D- -u "<ipa_username>":"<ipa_password>" -X POST -H "X-Atlassian-Token: no-check" -F "file=@${path_to_diff};type=text/x-diff" "https://jira.<project_name>.com/rest/api/2/issue/${issue_id}/attachments"
   }
 
   diff_live && attach_diff
@@ -248,7 +273,7 @@ Every time you launch a terminal, it starts to run the shell - a special program
 
 #### Up a large number of repositories
 
-:bangbang: Before start working with `./scripting/up_repo.sh` run `./clone_vendors.sh` :bangbang:
+:bangbang: Before start working with `./scripting/up_repo.sh` you need to run `./clone_vendors.sh` :bangbang:
 
 ```bash
   #!/bin/bash
@@ -262,12 +287,12 @@ Every time you launch a terminal, it starts to run the shell - a special program
   # get list of repositories
   findRepo() {
     REPO_NAME="terminalForCoder__WSD"
-    path_to_vendor_repo="$HOME/$REPO_NAME/bash/core/vendors/"
+    path_to_vendor_repo="${HOME}/${REPO_NAME}/bash/core/vendors/"
     # find all git repositories in $path_to_vendor_repo
     # filter by /.git
-    r=$(find $path_to_vendor_repo -name .git | xargs | sed "s/\\/.git//g")
+    r=$(find ${path_to_vendor_repo} -name .git | xargs | sed "s/\\/.git//g")
     # do check repositories stuff
-    checkBranch $r
+    checkBranch "$r"
   }
 
   # do check repositories stuff
@@ -275,28 +300,28 @@ Every time you launch a terminal, it starts to run the shell - a special program
     BRANCH="master"
 
     # $i is item in $r
-    for i in $@
+    for i in "$@"
     do
       # get current branch name
-      b=`cd $i && git branch | grep \*`
-      echo "repo: $i"
-      echo "current brunch: $b"
+      b=`cd ${i} && git branch | grep \*`
+      echo "repo: ${i}"
+      echo "current brunch: ${b}"
 
       # check branch
-      if [[ $b != "* master" ]]
+      if [[ "$b" != "* master" ]]
       then
-        echo "!Error! $i is not on $BRANCH branch"
-        echo "Current branch is $b"
-        cd $i && git checkout $BRANCH && git branch && git pull origin $BRANCH
+        echo "!Error! ${i} is not on ${BRANCH} branch"
+        echo "Current branch is ${b}"
+        cd "$i" && git checkout "$BRANCH" && git branch && git pull origin "$BRANCH"
       else
         echo "Do pull stuff"
-        cd $i && git branch && git pull origin $BRANCH
+        cd "$i" && git branch && git pull origin "$BRANCH"
       fi
     done
     echo "Done. Congratulation, you win!"
   }
 
-  findRepo $@
+  findRepo "$@"
 ```
 
 #### Helpful aliases
