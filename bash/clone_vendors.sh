@@ -10,7 +10,9 @@ i=0 # start el
 repositories_count=${#repositories[@]} # array size
 
 cloneVendors() {
-  if [[ ! -d "${PATH_TO_CORE}/vendors" ]]
+  # if "${PATH_TO_CORE}/vendors" is not exist
+  # create "${PATH_TO_CORE}/vendors" directory
+  if [[ ! -e "${PATH_TO_CORE}/vendors" ]]
   then
     mkdir "${PATH_TO_CORE}/vendors"
   fi
@@ -19,18 +21,28 @@ cloneVendors() {
   do
     # Get vendor name
     vendor=$(echo ${repositories[$i]} | sed "s/https\:\/\/github\.com\/*//g" | sed "s/\/.*//g")
+    vendor_repo_name=$(echo ${repositories[$i]} | sed "s/https\:\/\/github\.com\/.*\///g" | sed "s/\.git//g")
 
+    # if "${PATH_TO_CORE}/vendors/${vendor}" is directory
+    # go to directory and do git clone stuff
     if [[ -d "${PATH_TO_CORE}/vendors/${vendor}" ]]
     then
       echo "Directory ${PATH_TO_CORE}/vendors/${vendor} is exist"
 
-      cd "${PATH_TO_CORE}/vendors/${vendor}" && git clone ${repositories[$i]}
+      if [[ ! -e "${PATH_TO_CORE}/vendors/${vendor}/${vendor_repo_name}" ]]
+      then
+        cd "${PATH_TO_CORE}/vendors/${vendor}" && git clone ${repositories[$i]}
+      else
+        echo "Repository ${PATH_TO_CORE}/vendors/${vendor}/${vendor_repo_name} is exist"
+        echo ""
+      fi
     else
+    # create directory "${PATH_TO_CORE}/vendors/${vendor}"
+    # go to directory and do git clone stuff
       echo "Create directory: ${PATH_TO_CORE}/vendors/${vendor}"
       echo "Repository: ${repositories[$i]} is clonning"
 
       mkdir "${PATH_TO_CORE}/vendors/${vendor}"
-
       cd "${PATH_TO_CORE}/vendors/${vendor}" && git clone ${repositories[$i]}
     fi
     i=$((i + 1)) # i++
