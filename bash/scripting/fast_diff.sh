@@ -8,6 +8,7 @@ FILE_EXTENTION=".diff"
 
 branch="$1"
 
+# if "$branch" is empty
 if [[ -z "$branch" ]]
 then
   echo "Enter the branch name"
