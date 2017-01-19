@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # create diff for current branch and puts it in the file
+# ./fast_diff.sh <branch> - how this script should called
 
 PATH_TO_DIFF_DIR="${HOME}/diff/"
 FILE_PREFIX="diff-"
