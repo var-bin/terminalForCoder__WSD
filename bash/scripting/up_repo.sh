@@ -9,20 +9,29 @@
 # get list of repositories
 findRepo() {
   REPO_NAME="terminalForCoder__WSD"
-  path_to_vendor_repo="${HOME}/${REPO_NAME}/bash/core/vendors/"
-  # find all git repositories in $path_to_vendor_repo
+  PATH_TO_VENDOR_REPO="${HOME}/${REPO_NAME}/bash/core/vendors/"
+
+  # find all git repositories in $PATH_TO_VENDOR_REPO
   # filter by /.git
-  r=$(find "$path_to_vendor_repo" -name .git | xargs | sed "s/\\/.git//g")
+
+  if [[ -e "$PATH_TO_VENDOR_REPO" ]]
+  then
+    r=$( find "$PATH_TO_VENDOR_REPO" -name .git | xargs | sed "s/\\/.git//g" )
+  else
+    echo "Can not find ${PATH_TO_VENDOR_REPO}"
+    echo "Try to edit REPO_NAME"
+    exit 0
+  fi
 
   # do check repositories stuff
-  checkBranch "$r"
+  checkBranch $r
 }
 
 # do check repositories stuff
 checkBranch() {
   BRANCH="master"
 
-  # $i is item in $r
+  # $i is an item in $r
   for i in "$@"
   do
     # get current branch name
@@ -39,6 +48,7 @@ checkBranch() {
     else
       echo "Do pull stuff"
       cd "$i" && git branch && git pull origin "$BRANCH"
+      echo ""
     fi
   done
   echo "Done. Congratulation, you win!"
