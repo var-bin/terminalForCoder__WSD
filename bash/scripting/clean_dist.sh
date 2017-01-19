@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # clean_dist.sh - clean dist for current theme
+# ./clean_dist.sh - clean all directories with dists
+# ./clean_dist.sh <theme> - clean <theme> dist
+
 
 cleanDist() {
   theme="$1"
