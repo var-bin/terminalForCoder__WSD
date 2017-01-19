@@ -36,4 +36,4 @@ diff_master && attach_diff
 
 # Usage: cd <repo_name> && fast_diff_v2.sh <issue_id>
 # <issue_id> should include your company prefix (ABC, XYZ, XX, etc.)
-# At instance, "fast_diff_v2.sh XYZ-135" will try to attach diff to https://jira.<project_name>.com/browse/XYZ-135
+# At instance, "./fast_diff_v2.sh XYZ-135" will try to attach diff to https://jira.<project_name>.com/browse/XYZ-135
