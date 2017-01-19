@@ -20,7 +20,7 @@ cleanDist() {
 
   if [[ -n $(find "$path_to_dist" -type d -name "$DIST_NAME") ]]
   then
-    # do clear stuff
+    # do clean stuff
     find "$path_to_dist" -type d -name "$DIST_NAME" | xargs -l rm -rfv
     echo "Dist of ${theme} have already deleted: ${path_to_dist}"
   else
