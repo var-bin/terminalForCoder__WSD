@@ -7,15 +7,15 @@ cleanDist() {
   DIST_NAME="_dist"
   REPO_NAME="terminalForCoder__WSD"
 
-  path_to_assets="${HOME}/${REPO_NAME}/bash/core/assets"
+  PATH_TO_ASSETS="${HOME}/${REPO_NAME}/bash/core/assets"
 
   # if $1 == "" clean all _dist in each theme
   if [[ -z "$theme" ]]
   then
     theme="assets"
-    path_to_dist="$path_to_assets"
+    path_to_dist="$PATH_TO_ASSETS"
   else
-    path_to_dist="${path_to_assets}/${theme}"
+    path_to_dist="${PATH_TO_ASSETS}/${theme}"
   fi
 
   if [[ -n $(find "$path_to_dist" -type d -name "$DIST_NAME") ]]
