@@ -13,6 +13,7 @@ branch="$1"
 if [[ -z "$branch" ]]
 then
   echo "Enter the branch name"
+  exit 0
 else
   path="${PATH_TO_DIFF_DIR}${FILE_PREFIX}${branch}${FILE_EXTENTION}"
   git diff origin/master origin/"$branch" > "$path"
