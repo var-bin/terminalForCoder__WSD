@@ -24,12 +24,13 @@ findRepo() {
   fi
 
   # do check repositories stuff
-  checkBranch $r
+  checkBranch "${r}"
 }
 
 # do check repositories stuff
 checkBranch() {
   BRANCH="master"
+  CHECK_BRANCH="* master"
 
   # $i is an item in $r
   for i in "$@"
@@ -40,13 +41,15 @@ checkBranch() {
     echo "current brunch: ${b}"
 
     # check branch
-    if [[ "$b" != "* master" ]]
+    if [[ "$b" != "$CHECK_BRANCH" ]]
     then
       echo "!Error! ${i} is not on ${BRANCH} branch"
       echo "Current branch is ${b}"
+      echo "Checkout to ${BRANCH} and do git pull stuff for ${i}"
       cd "$i" && git checkout "$BRANCH" && git branch && git pull origin "$BRANCH"
+      echo ""
     else
-      echo "Do pull stuff"
+      echo "Do git pull stuff for ${i}"
       cd "$i" && git branch && git pull origin "$BRANCH"
       echo ""
     fi
