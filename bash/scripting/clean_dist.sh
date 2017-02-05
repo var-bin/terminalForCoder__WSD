@@ -25,7 +25,7 @@ cleanDist() {
   then
     # do clean stuff
     find "$path_to_dist" -type d -name "$DIST_NAME" | xargs -l rm -rfv
-    echo "Dist of ${theme} have already deleted: ${path_to_dist}"
+    echo "Dist of ${theme} has already deleted: ${path_to_dist}"
   else
     echo "Can not find ${DIST_NAME} in ${theme}"
   fi
