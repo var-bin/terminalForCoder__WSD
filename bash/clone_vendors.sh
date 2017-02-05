@@ -31,6 +31,7 @@ cloneVendors() {
 
       if [[ ! -e "${PATH_TO_CORE}/vendors/${vendor}/${vendor_repo_name}" ]]
       then
+        echo "Repository: ${repositories[$i]} is clonning"
         cd "${PATH_TO_CORE}/vendors/${vendor}" && git clone ${repositories[$i]}
       else
         echo "Repository ${PATH_TO_CORE}/vendors/${vendor}/${vendor_repo_name} is exist"
@@ -40,9 +41,9 @@ cloneVendors() {
     # create directory "${PATH_TO_CORE}/vendors/${vendor}"
     # go to directory and do git clone stuff
       echo "Create directory: ${PATH_TO_CORE}/vendors/${vendor}"
-      echo "Repository: ${repositories[$i]} is clonning"
-
       mkdir "${PATH_TO_CORE}/vendors/${vendor}"
+
+      echo "Repository: ${repositories[$i]} is clonning"
       cd "${PATH_TO_CORE}/vendors/${vendor}" && git clone ${repositories[$i]}
     fi
     i=$((i + 1)) # i++
