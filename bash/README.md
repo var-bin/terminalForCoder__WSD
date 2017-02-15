@@ -28,7 +28,7 @@ The beginning of any script in bash
 **Read variable:**
 
 ```bash
-  "$path" или "${path}"
+  "$path" or "${path}"
 ```
 
 **Pass arguments to a script:**
@@ -153,7 +153,7 @@ The beginning of any script in bash
     echo "Removing dir"
     rm -r "$1"
   else
-    echo "Can't remove ${1}"
+    echo "Cannot remove ${1}"
   fi
 ```
 
@@ -242,10 +242,18 @@ The beginning of any script in bash
 ```bash
   #!/bin/bash
 
+  PATH_TO_DIFF_DIR="${HOME}/diff/"
+  FILE_EXTENTION=".diff"
+
+  USER_NAME="<user_name>"
+  USER_PASSWORD="<user_password>"
+  PROJECT_NAME="<project_name>"
+
+  # if "$1" is empty
   if [ -z "$1" ]
   then
     echo "Please, specify an issue ID"
-    exit 1
+    exit 0
   fi
 
   issue_id="$1"
@@ -253,22 +261,25 @@ The beginning of any script in bash
 
   # Get the first line of git remote output and cut a path to repository
   repository=$(git remote -v | head -n1 | sed "s/^origin.*\/\(.*\)\.git\s(.*)/\1/")
+  file_name="${branch}-${repository}${FILE_EXTENTION}"
 
-  path_to_diff="${HOME}/<path_to_diff_directory>${branch}-${repository}.diff"
+  # path to diff directory with <filename>.diff
+  path_to_diff="${PATH_TO_DIFF_DIR}${file_name}"
 
-  diff_live () {
-    git diff "origin/live..master/${branch}" > "$path_to_diff"
+  diffMaster() {
+    git diff "origin/master origin/${branch}" > "$path_to_diff"
   }
 
-  attach_diff () {
-    curl -D- -u "<ipa_username>":"<ipa_password>" -X POST -H "X-Atlassian-Token: no-check" -F "file=@${path_to_diff};type=text/x-diff" "https://jira.<project_name>.com/rest/api/2/issue/${issue_id}/attachments"
+  attachDiff() {
+    curl -D -u "${USER_NAME}":"${USER_PASSWORD}" -X POST -H "X-Atlassian-Token: no-check" -F "file=@${path_to_diff};type=text/x-diff" "https://jira.${PROJECT_NAME}.com/rest/api/2/issue/${issue_id}/attachments"
   }
 
-  diff_live && attach_diff
+  diffMaster && attachDiff
 
-  # Usage: cd <repo_name> && attach_diff <issue_id>
+  # Usage: cd <repo_name> && fast_diff_v2.sh <issue_id>
   # <issue_id> should include your company prefix (ABC, XYZ, XX, etc.)
-  # At instance, "attach_diff XYZ-135" will try to attach diff to https://jira.<project_name>.com/browse/XYZ-135
+  # At instance, "./fast_diff_v2.sh XYZ-135" will try to attach diff to
+  # https://jira.<project_name>.com/browse/XYZ-135
 ```
 
 #### Up a large number of repositories
@@ -287,35 +298,49 @@ The beginning of any script in bash
   # get list of repositories
   findRepo() {
     REPO_NAME="terminalForCoder__WSD"
-    path_to_vendor_repo="${HOME}/${REPO_NAME}/bash/core/vendors/"
-    # find all git repositories in $path_to_vendor_repo
+    PATH_TO_VENDOR_REPO="${HOME}/${REPO_NAME}/bash/core/vendors/"
+
+    # find all git repositories in $PATH_TO_VENDOR_REPO
     # filter by /.git
-    r=$(find ${path_to_vendor_repo} -name .git | xargs | sed "s/\\/.git//g")
+
+    if [[ -e "$PATH_TO_VENDOR_REPO" ]]
+    then
+      r=$( find "$PATH_TO_VENDOR_REPO" -name .git | xargs | sed "s/\\/.git//g" )
+    else
+      echo "Cannot find ${PATH_TO_VENDOR_REPO}"
+      echo "Try to edit REPO_NAME in ${0}"
+      exit 0
+    fi
+
     # do check repositories stuff
-    checkBranch "$r"
+    checkBranch "${r}"
   }
 
   # do check repositories stuff
   checkBranch() {
     BRANCH="master"
+    CHECK_BRANCH="* master"
 
-    # $i is item in $r
+    # $i is an item in $r
     for i in "$@"
     do
       # get current branch name
-      b=`cd ${i} && git branch | grep \*`
+      b=$(cd "$i" && git branch | grep \*)
       echo "repo: ${i}"
       echo "current brunch: ${b}"
 
       # check branch
-      if [[ "$b" != "* master" ]]
+      if [[ "$b" != "$CHECK_BRANCH" ]]
       then
         echo "!Error! ${i} is not on ${BRANCH} branch"
         echo "Current branch is ${b}"
+        echo "Checkout to ${BRANCH} and do git pull stuff for ${i}"
         cd "$i" && git checkout "$BRANCH" && git branch && git pull origin "$BRANCH"
+        echo ""
       else
-        echo "Do pull stuff"
+        echo "Do git pull stuff for ${i}"
         cd "$i" && git branch && git pull origin "$BRANCH"
+        echo ""
       fi
     done
     echo "Done. Congratulation, you win!"
