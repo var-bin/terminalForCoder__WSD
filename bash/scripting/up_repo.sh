@@ -9,16 +9,16 @@
 # get list of repositories
 findRepo() {
   REPO_NAME="terminalForCoder__WSD"
-  PATH_TO_VENDOR_REPO="${HOME}/${REPO_NAME}/bash/core/vendors/"
+  PATH_TO_VENDORS_REPO="${HOME}/${REPO_NAME}/bash/core/vendors/"
 
-  # find all git repositories in $PATH_TO_VENDOR_REPO
+  # find all git repositories in $PATH_TO_VENDORS_REPO
   # filter by /.git
 
-  if [[ -e "$PATH_TO_VENDOR_REPO" ]]
+  if [[ -e "$PATH_TO_VENDORS_REPO" ]]
   then
-    r=$( find "$PATH_TO_VENDOR_REPO" -name .git | xargs | sed "s/\\/.git//g" )
+    r=$( find "$PATH_TO_VENDORS_REPO" -name .git | xargs | sed "s/\\/.git//g" )
   else
-    echo "Cannot find ${PATH_TO_VENDOR_REPO}"
+    echo "Cannot find ${PATH_TO_VENDORS_REPO}"
     echo "Try to edit REPO_NAME in ${0}"
     exit 0
   fi
