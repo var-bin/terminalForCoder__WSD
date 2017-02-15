@@ -1,6 +1,6 @@
 #!/bin/bash
 # clone vendors repositories to ./core/vendors
-REPO_NAME="t"
+REPO_NAME="terminalForCoder__WSD"
 PATH_TO_CORE="${HOME}/${REPO_NAME}/bash/core"
 PATH_TO_VENDOR_REPO="${HOME}/${REPO_NAME}/vendors"
 
