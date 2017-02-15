@@ -24,7 +24,7 @@ findRepo() {
   fi
 
   # do check repositories stuff
-  checkBranch "${r}"
+  checkBranch $r
 }
 
 # do check repositories stuff
