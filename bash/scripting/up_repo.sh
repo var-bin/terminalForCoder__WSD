@@ -9,17 +9,17 @@
 # get list of repositories
 findRepo() {
   REPO_NAME="terminalForCoder__WSD"
-  PATH_TO_VENDOR_REPO="${HOME}/${REPO_NAME}/bash/core/vendors/"
+  PATH_TO_VENDORS_REPO="${HOME}/${REPO_NAME}/bash/core/vendors/"
 
-  # find all git repositories in $PATH_TO_VENDOR_REPO
+  # find all git repositories in $PATH_TO_VENDORS_REPO
   # filter by /.git
 
-  if [[ -e "$PATH_TO_VENDOR_REPO" ]]
+  if [[ -e "$PATH_TO_VENDORS_REPO" ]]
   then
-    r=$( find "$PATH_TO_VENDOR_REPO" -name .git | xargs | sed "s/\\/.git//g" )
+    r=$( find "$PATH_TO_VENDORS_REPO" -name .git | xargs | sed "s/\\/.git//g" )
   else
-    echo "Can not find ${PATH_TO_VENDOR_REPO}"
-    echo "Try to edit REPO_NAME"
+    echo "Cannot find ${PATH_TO_VENDORS_REPO}"
+    echo "Try to edit REPO_NAME in ${0}"
     exit 0
   fi
 
@@ -30,6 +30,7 @@ findRepo() {
 # do check repositories stuff
 checkBranch() {
   BRANCH="master"
+  CHECK_BRANCH="* master"
 
   # $i is an item in $r
   for i in "$@"
@@ -40,13 +41,15 @@ checkBranch() {
     echo "current brunch: ${b}"
 
     # check branch
-    if [[ "$b" != "* master" ]]
+    if [[ "$b" != "$CHECK_BRANCH" ]]
     then
       echo "!Error! ${i} is not on ${BRANCH} branch"
       echo "Current branch is ${b}"
+      echo "Checkout to ${BRANCH} and do git pull stuff for ${i}"
       cd "$i" && git checkout "$BRANCH" && git branch && git pull origin "$BRANCH"
+      echo ""
     else
-      echo "Do pull stuff"
+      echo "Do git pull stuff for ${i}"
       cd "$i" && git branch && git pull origin "$BRANCH"
       echo ""
     fi
