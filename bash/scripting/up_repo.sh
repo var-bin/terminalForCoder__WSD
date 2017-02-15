@@ -18,7 +18,7 @@ findRepo() {
   then
     r=$( find "$PATH_TO_VENDOR_REPO" -name .git | xargs | sed "s/\\/.git//g" )
   else
-    echo "Can not find ${PATH_TO_VENDOR_REPO}"
+    echo "Cannot find ${PATH_TO_VENDOR_REPO}"
     echo "Try to edit REPO_NAME in ${0}"
     exit 0
   fi
