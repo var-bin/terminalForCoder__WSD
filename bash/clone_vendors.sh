@@ -15,7 +15,7 @@ cloneVendors() {
   # show info message
   if [[ ! -e "${PATH_TO_CORE}" ]]
   then
-    echo "Can not find ${PATH_TO_CORE}"
+    echo "Cannot find ${PATH_TO_CORE}"
     echo "Try to edit REPO_NAME in ${0}"
     exit 0
   fi
