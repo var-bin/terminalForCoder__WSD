@@ -25,7 +25,7 @@ _repository for practice *nix terminal (Ubuntu prefer)_
 * Do `git clone` stuff
 
 ```bash
-$ git clone https://github.com/var-bin/terminalForCoder__WSD.git
+$ git clone git@github.com:var-bin/terminalForCoder__WSD.git
 ```
 
 * Enjoy :computer:
